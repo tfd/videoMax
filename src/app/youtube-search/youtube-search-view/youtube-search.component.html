@@ -2,15 +2,19 @@
   <div [formGroup]="searchForm">
     <input matInput placeholder="Search Term" formControlName="searchTerm">
     <button mat-button (submit)="search(searchForm.get('searchTerm').value)"
-            (click)="search(searchForm.get('searchTerm').value)">Search</button>
+            (click)="search(searchForm.get('searchTerm').value)">Search
+    </button>
   </div>
 </mat-toolbar>
 
-<mat-list>
-  <mat-list-item *ngFor="let result of searchResultItems$ | async">
+
+<mat-grid-list cols="3" >
+  <mat-grid-tile *ngFor="let result of searchResultItems$ | async">
     <div>
-      {{result.id.videoId}}
+      <vmax-preview-player [youtubeVideoId]="result.id.videoId"></vmax-preview-player>
     </div>
-  </mat-list-item>
-</mat-list>
+  </mat-grid-tile>
+
+</mat-grid-list>
+
 

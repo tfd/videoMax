@@ -7,13 +7,13 @@ import {map} from 'rxjs/operators';
 })
 export class YoutubeSearchService {
   readonly BASE_URL =
-    'https://www.googleapis.com/youtube/v3/search?key=AIzaSyALn0S3A2KfRllUGxvMrOqp1gw9iLKlzpA&part=id&maxResults=50';
+    'https://www.googleapis.com/youtube/v3/search?key=AIzaSyALn0S3A2KfRllUGxvMrOqp1gw9iLKlzpA&part=id';
 
   constructor(private http: HttpClient) {
   }
 
-  public searchFor(searchQuery: string) {
-    return this.http.get<SearchResult>(`${this.BASE_URL}&q=${searchQuery}`)
+  public searchFor(searchQuery: string, maxresult: number) {
+    return this.http.get<SearchResult>(`${this.BASE_URL}&maxResults=${maxresult}&q=${searchQuery}`)
       .pipe(
         map((data) => {
           console.log(data);

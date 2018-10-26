@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Observable} from 'rxjs';
 import {tap} from 'rxjs/operators';
-import {SearchResultItem, YoutubeSearchService} from '../../service/youtube-search.service';
+import {SearchResultItem, YoutubeSearchService} from '../../services/youtube-search.service';
 
 @Component({
   selector: 'vmax-youtube-search',
@@ -16,7 +17,10 @@ export class YoutubeSearchComponent implements OnInit {
   searchQuery: string;
   searchForm: FormGroup;
 
-  constructor(private youtubeSearch: YoutubeSearchService, private fb: FormBuilder) {
+  constructor(private youtubeSearch: YoutubeSearchService,
+              private fb: FormBuilder,
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -26,11 +30,17 @@ export class YoutubeSearchComponent implements OnInit {
   }
 
   public search(search: string) {
-    this.searchResultItems$ = this.youtubeSearch.searchFor(search.trim())
+    this.searchResultItems$ = this.youtubeSearch.searchFor(search.trim(), 5)
       .pipe(
         tap((data) => {
           console.log(data);
         }),
       );
+  }
+
+  showPreview(videoId: string) {
+    this.router.navigate(['preview', videoId], {
+      relativeTo: this.route,
+    });
   }
 }
