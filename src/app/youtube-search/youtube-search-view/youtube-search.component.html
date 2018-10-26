@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <div [formGroup]="searchForm">
+    <input matInput placeholder="Search Term" formControlName="searchTerm">
+    <button matButton type="button" (click)="search(searchQuery)">Search</button>
+  </div>
+</mat-toolbar>
+
+<mat-list>
+  <mat-list-item *ngFor="let result of searchResultItems$ | async">
+    <div>
+      {{result.id.videoId}}
+    </div>
+  </mat-list-item>
+</mat-list>
+
