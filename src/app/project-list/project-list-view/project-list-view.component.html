@@ -1,1 +1,8 @@
-<vmax-project-list [projects]="projects$ | async" (select)="select($event)" (add)="add()">
+<div class="vmax-project-list-view">
+  <mat-toolbar>
+    <button mat-raised-button color="primary" (click)="add()">Add</button>
+    <button mat-raised-button color="primary" routerLink="/search">Search</button>
+  </mat-toolbar>
+
+  <vmax-project-list [projects]="projects$ | async" (edit)="edit($event)" (delete)="delete($event)" (add)="add()"></vmax-project-list>
+</div>

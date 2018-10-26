@@ -1,23 +1,14 @@
-import {CommonModule} from '@angular/common';
 import {NgModule} from '@angular/core';
-import {ReactiveFormsModule} from '@angular/forms';
-import {MatCardModule, MatGridListModule, MatListModule, MatSidenavModule, MatToolbarModule} from '@angular/material';
 import {RouterModule} from '@angular/router';
 import {YoutubePlayerModule} from 'ngx-youtube-player';
-import {PreviewPlayerComponent} from './preview-player/preview-player.component';
 import {YoutubeDashComponent} from './youtube-dash/youtube-dash.component';
-import {YoutubeSearchComponent} from './youtube-search-view/youtube-search.component';
+import {YoutubeSearchViewComponent} from './youtube-search-view/youtube-search-view.component';
+import {SharedModule} from '../shared';
 
 @NgModule({
   imports: [
-    MatCardModule,
-    MatGridListModule,
+    SharedModule,
     YoutubePlayerModule,
-    MatSidenavModule,
-    MatToolbarModule,
-    ReactiveFormsModule,
-    MatListModule,
-    CommonModule,
     RouterModule.forChild([
       {
         path: '', component: YoutubeDashComponent,
@@ -26,9 +17,8 @@ import {YoutubeSearchComponent} from './youtube-search-view/youtube-search.compo
     ])
   ],
   declarations: [
-    YoutubeSearchComponent,
+    YoutubeSearchViewComponent,
     YoutubeDashComponent,
-    PreviewPlayerComponent,
   ]
 })
 export class YoutubeSearchModule {

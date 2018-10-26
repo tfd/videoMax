@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <div [formGroup]="searchForm">
+    <input matInput placeholder="Search Term" formControlName="searchTerm">
+    <button mat-button
+            [disabled]="searchForm.invalid"
+            (click)="search(searchForm.get('searchTerm').value)">Search
+    </button>
+  </div>
+</mat-toolbar>
+
+<mat-card class="vmax-search-list">
+  <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="1%" fxLayoutAlign="center">
+    <div *ngFor="let project of projects$ | async">
+      <vmax-preview-player [project]="project" [hasAdd]="true" (add)="onAdd($event)"></vmax-preview-player>
+    </div>
+  </div>
+</mat-card>

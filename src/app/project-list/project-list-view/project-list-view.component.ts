@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectStorageService} from '../../services/project-storage.service';
 import {Observable} from 'rxjs';
-import {Project} from '../../model/Project';
+import {Project} from '../../shared/model/Project';
 import {MatDialog} from '@angular/material';
 import {AddProjectDialogComponent} from '../add-project-dialog/add-project-dialog.component';
 
@@ -33,8 +33,12 @@ export class ProjectListViewComponent implements OnInit {
     this.projects$ = this.service.getProjects('');
   }
 
-  select(project: Project) {
-    console.log('select', project);
+  edit(project: Project) {
+    console.log('edit', project);
+  }
+
+  delete(project: Project) {
+    console.log('delete', project);
   }
 
   add() {

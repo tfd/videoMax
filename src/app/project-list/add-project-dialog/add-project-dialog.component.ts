@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Project} from '../../model/Project';
+import {Project} from '../../shared/model/Project';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
