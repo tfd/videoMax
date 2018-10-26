@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectStorageService} from '../../services/project-storage.service';
-import {Observable} from 'rxjs';
+import {Observable, zip} from 'rxjs';
 import {Project} from '../../model/Project';
 import {MatDialog} from '@angular/material';
 import {AddProjectDialogComponent} from '../add-project-dialog/add-project-dialog.component';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'vmax-project-list-view',
@@ -18,7 +19,7 @@ export class ProjectListViewComponent implements OnInit {
   public projects$: Observable<Array<Project>>;
 
   ngOnInit() {
-    /*
+    
     this.projects$ = zip(
       this.service.addProject({name: 'project', description: 'something', url: 'http://www.youtube.com '}),
       this.service.addProject({name: 'project1', description: 'something', url: 'http://www.youtube.com '}),
@@ -29,7 +30,7 @@ export class ProjectListViewComponent implements OnInit {
       .pipe(
         mergeMap(() => this.service.getProjects(''))
       );
-    */
+    
     this.projects$ = this.service.getProjects('');
   }
 
