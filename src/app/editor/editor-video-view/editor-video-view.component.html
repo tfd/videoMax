@@ -1,3 +1,13 @@
-<p>
-  video-view works!
-</p>
+<mat-card *ngIf="youtubeVideoId">
+  <youtube-player
+    [width]="550"
+    [height]="350"
+    [videoId]="youtubeVideoId"
+    (ready)="savePlayer($event)"
+    (change)="onStateChange($event)"
+  ></youtube-player>
+  <mat-card-footer>
+    Duration: {{player.getDuration()}}
+    CurrentPlaytime: {{player.getCurrentTime() | number: '1.4-4' }} Sec
+  </mat-card-footer>
+</mat-card>
