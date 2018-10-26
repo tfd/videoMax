@@ -1,0 +1,11 @@
+<div class="vmax-project-list">
+  <button mat-raised-button color="primary" (click)="add.emit()">Add</button>
+  <mat-list>
+    <a mat-list-item
+       *ngFor="let project of projects; trackBy:trackByContactId"
+       (click)="select.emit(project)"
+       title="{{ project.name }}">
+      <h3 mat-line>{{project.name}}</h3>
+    </a>
+  </mat-list>
+</div>
