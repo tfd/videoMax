@@ -10,7 +10,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class AddProjectDialogComponent implements OnInit {
 
-  private form: FormGroup;
+  public form: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<AddProjectDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: Project,
@@ -19,7 +19,6 @@ export class AddProjectDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      id: 0,
       name: ['', [Validators.required, Validators.minLength(1)]],
       description: [''],
       url: ['', [
@@ -27,10 +26,6 @@ export class AddProjectDialogComponent implements OnInit {
         Validators.pattern(/^https?:\/\/.*/)]
       ]
     });
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
   }
 
 }

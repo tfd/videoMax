@@ -52,7 +52,12 @@ export class ProjectStorageService {
 
   private getNewKey() {
     const keys: number[] = Object.keys(this.projects).map(n => parseInt(n, 10));
-    return (keys.length === 0 ? 0 : keys.sort().reverse()[0]) + 1;
+    if (!keys || keys.length === 0) {
+      return 1;
+    }
+
+    const revertedKeys = keys.sort((a, b) => b - a);
+    return revertedKeys[0] + 1;
   }
 
   private saveToLocalStorage() {

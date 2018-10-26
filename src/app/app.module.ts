@@ -7,7 +7,7 @@ import {ProjectListViewComponent} from './project-list-view/project-list-view.co
 import {ProjectStorageService} from './services/project-storage.service';
 import {ProjectsMaterialModule} from './projects-material.module';
 import { AddProjectDialogComponent } from './add-project-dialog/add-project-dialog.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -22,6 +22,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     ProjectsMaterialModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [
     AddProjectDialogComponent,

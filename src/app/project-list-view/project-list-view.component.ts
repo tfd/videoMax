@@ -50,6 +50,9 @@ export class ProjectListViewComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed', result);
+      if (result) {
+        this.service.addProject(result).subscribe(() => this.projects$ = this.service.getProjects(''));
+      }
     });
   }
 }

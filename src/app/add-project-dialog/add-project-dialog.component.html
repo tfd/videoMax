@@ -1,19 +1,24 @@
-<h1 mat-dialog-title>Create a new project</h1>
-<div mat-dialog-content>
+<h1 mat-dialog-title>Add a new project</h1>
+<div mat-dialog-content [formGroup]="form">
   <mat-form-field>
-    <label mat-tab-label="">Name</label>
-    <input matInput [(ngModel)]="data.name">
+    <input matInput id="name" name="name" placeholder="name" formControlName="name">
+    <mat-error>
+      <span *ngIf="form?.controls['name']?.errors?.required">The name is required</span>
+      <span *ngIf="form?.controls['name']?.errors?.minLength">The name must be longer then 1 character</span>
+    </mat-error>
   </mat-form-field>
   <mat-form-field>
-    <label mat-tab-label="">Description</label>
-    <input matInput [(ngModel)]="data.description">
+    <input matInput id="description" name="description" placeholder="description" formControlName="description">
   </mat-form-field>
   <mat-form-field>
-    <label mat-tab-label="">URL</label>
-    <input matInput [(ngModel)]="data.url">
+    <input matInput id="url" name="url" placeholder="url" formControlName="url">
+    <mat-error>
+      <span *ngIf="form?.controls['url']?.errors?.required">The url is required</span>
+      <span *ngIf="form?.controls['url']?.errors?.pattern">The url is not valid</span>
+    </mat-error>
   </mat-form-field>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Create</button>
+<div mat-dialog-actions [formGroup]="form">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [disabled]="form.invalid" [mat-dialog-close]="form.value" cdkFocusInitial>Add</button>
 </div>
