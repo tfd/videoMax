@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {ProjectStorageService} from '../services/project-storage.service';
+import {ProjectStorageService} from '../../services/project-storage.service';
 import {Observable} from 'rxjs';
-import {Project} from '../model/Project';
+import {Project} from '../../model/Project';
 import {MatDialog} from '@angular/material';
 import {AddProjectDialogComponent} from '../add-project-dialog/add-project-dialog.component';
 

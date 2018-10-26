@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Project} from '../model/Project';
+import {Project} from '../../model/Project';
 
 @Component({
   selector: 'vmax-project-list',
