@@ -21,12 +21,12 @@ export class YoutubeSearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchForm = this.fb.group({
-      searchTerm: ['', Validators.required, Validators.minLength(3)],
+      searchTerm: ['', [Validators.required, Validators.minLength(3)], []],
     });
   }
 
   public search(search: string) {
-    this.searchResultItems$ = this.youtubeSearch.searchFor(search)
+    this.searchResultItems$ = this.youtubeSearch.searchFor(search.trim())
       .pipe(
         tap((data) => {
           console.log(data);

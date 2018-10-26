@@ -1,7 +1,8 @@
 <mat-toolbar>
   <div [formGroup]="searchForm">
     <input matInput placeholder="Search Term" formControlName="searchTerm">
-    <button matButton type="button" (click)="search(searchQuery)">Search</button>
+    <button mat-button (submit)="search(searchForm.get('searchTerm').value)"
+            (click)="search(searchForm.get('searchTerm').value)">Search</button>
   </div>
 </mat-toolbar>
 
