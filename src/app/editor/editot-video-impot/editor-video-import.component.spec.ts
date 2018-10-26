@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditotVideoImpotComponent } from './editot-video-impot.component';
+import { EditorVideoImportComponent } from './editor-video-import.component';
 
-describe('EditotVideoImpotComponent', () => {
-  let component: EditotVideoImpotComponent;
-  let fixture: ComponentFixture<EditotVideoImpotComponent>;
+describe('EditorVideoImportComponent', () => {
+  let component: EditorVideoImportComponent;
+  let fixture: ComponentFixture<EditorVideoImportComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditotVideoImpotComponent ]
+      declarations: [ EditorVideoImportComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditotVideoImpotComponent);
+    fixture = TestBed.createComponent(EditorVideoImportComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

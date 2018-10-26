@@ -1,22 +1,28 @@
+import {CommonModule} from '@angular/common';
+import {NgModule} from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 import {YoutubePlayerModule} from 'ngx-youtube-player';
-import { EditorListViewComponent } from './editor-list-view/editor-list-view.component';
-import { RouterModule } from '@angular/router';
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { EditorViewComponent } from './editor-view/editor-view.component';
-import { EditorVideoViewComponent } from './editor-video-view/editor-video-view.component';
 import {ProjectsMaterialModule} from '../projects-material.module';
-import { EditotVideoImpotComponent } from './editot-video-impot/editot-video-impot.component';
+import {EditEventBusService} from './edit-event-bus.service';
+import {EditorListViewComponent} from './editor-list-view/editor-list-view.component';
+import {EditorVideoViewComponent} from './editor-video-view/editor-video-view.component';
+import {EditorViewComponent} from './editor-view/editor-view.component';
+import {EditorVideoImportComponent} from './editot-video-impot/editor-video-import.component';
 
 @NgModule({
   imports: [
     YoutubePlayerModule,
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     ProjectsMaterialModule,
     RouterModule.forChild([
       {path: '', component: EditorViewComponent}
     ])
   ],
-  declarations: [EditorViewComponent, EditorVideoViewComponent, EditorListViewComponent, EditotVideoImpotComponent]
+  declarations: [EditorViewComponent, EditorVideoViewComponent, EditorListViewComponent, EditorVideoImportComponent],
+  providers: [EditEventBusService]
 })
-export class EditorModule { }
+export class EditorModule {
+}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Project} from '../../model/Project';
 
 @Component({
   selector: 'vmax-editor-view',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditorViewComponent implements OnInit {
 
-  constructor() { }
+  public projects: Project;
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -19,7 +19,6 @@ import {ProjectStorageService} from './services/project-storage.service';
     BrowserModule,
     BrowserAnimationsModule,
     ProjectsMaterialModule,
-    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
