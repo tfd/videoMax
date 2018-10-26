@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ProjectStorageService} from '../services/project-storage.service';
 import {Observable} from 'rxjs';
 import {Project} from '../model/Project';
+import {MatDialog} from '@angular/material';
+import {AddProjectDialogComponent} from '../add-project-dialog/add-project-dialog.component';
 
 @Component({
   selector: 'vmax-project-list-view',
@@ -10,7 +12,7 @@ import {Project} from '../model/Project';
 })
 export class ProjectListViewComponent implements OnInit {
 
-  constructor(private service: ProjectStorageService) {
+  constructor(private service: ProjectStorageService, public dialog: MatDialog) {
   }
 
   public projects$: Observable<Array<Project>>;
@@ -32,7 +34,22 @@ export class ProjectListViewComponent implements OnInit {
   }
 
   select(project: Project) {
-    console.log(project);
+    console.log('select', project);
   }
 
+  add() {
+    console.log('add');
+    this.openDialog();
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddProjectDialogComponent, {
+      width: '250px',
+      data: {name: '', description: '', url: ''}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed', result);
+    });
+  }
 }

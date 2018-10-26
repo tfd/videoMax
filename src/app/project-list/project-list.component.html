@@ -1,4 +1,5 @@
 <div class="vmax-project-list">
+  <button mat-raised-button color="primary" (click)="add.emit()">Add</button>
   <mat-list>
     <a mat-list-item
        *ngFor="let project of projects; trackBy:trackByContactId"
