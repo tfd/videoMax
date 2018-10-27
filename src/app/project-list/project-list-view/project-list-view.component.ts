@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Project} from '../../shared/models/Project';
 import {MatDialog} from '@angular/material';
 import {AddProjectDialogComponent} from '../../shared/components/add-project-dialog/add-project-dialog.component';
+import {filter, mergeMap} from 'rxjs/operators';
 
 @Component({
   selector: 'vmax-project-list-view',
@@ -47,16 +48,19 @@ export class ProjectListViewComponent implements OnInit {
   }
 
   openDialog(): void {
+    const saveProject = result => this.service.addProject(result);
+
     const dialogRef = this.dialog.open(AddProjectDialogComponent, {
-      width: '250px',
+//      width: '250px',
       data: {id: '', name: '', description: '', url: '', thumbnail: ''}
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed', result);
-      if (result) {
-        this.service.addProject(result).subscribe(() => this.projects$ = this.service.getProjects(''));
+    dialogRef.afterClosed().pipe(
+      filter(result => result),
+      mergeMap(saveProject)
+    ).subscribe(result => {
+        this.projects$ = this.service.getProjects('');
       }
-    });
+    );
   }
 }

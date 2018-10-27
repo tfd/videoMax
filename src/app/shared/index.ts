@@ -8,12 +8,14 @@ import {HourMinuteSecondsPipe} from './pipes/pipes';
 import {PreviewPlayerComponent} from './components/preview-player/preview-player.component';
 import {PreviewThumbnailComponent} from './components/preview-thumbnail/preview-thumbnail.component';
 import {AddProjectDialogComponent} from './components/add-project-dialog/add-project-dialog.component';
+import {GoogleKeyInputComponent} from './components/google-key-input/google-key-input.component';
 
 @NgModule({
   declarations: [
     AddProjectDialogComponent,
     PreviewPlayerComponent,
     PreviewThumbnailComponent,
+    GoogleKeyInputComponent,
     HourMinuteSecondsPipe,
   ],
   imports: [
@@ -31,6 +33,7 @@ import {AddProjectDialogComponent} from './components/add-project-dialog/add-pro
     FlexLayoutModule,
     PreviewPlayerComponent,
     PreviewThumbnailComponent,
+    GoogleKeyInputComponent,
     HourMinuteSecondsPipe,
   ],
   entryComponents: [
