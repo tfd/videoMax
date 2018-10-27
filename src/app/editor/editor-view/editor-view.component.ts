@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Project} from '../../model/Project';
+import { Project } from 'src/app/shared/models/Project';
 
 @Component({
   selector: 'vmax-editor-view',

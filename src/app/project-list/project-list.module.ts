@@ -1,17 +1,15 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {ProjectListViewComponent} from './project-list-view/project-list-view.component';
 import {ProjectListComponent} from './project-list/project-list.component';
 import {RouterModule} from '@angular/router';
-import {ReactiveFormsModule} from '@angular/forms';
-import {ProjectsMaterialModule} from '../projects-material.module';
-import {AddProjectDialogComponent} from './add-project-dialog/add-project-dialog.component';
+import {AddProjectDialogComponent} from '../shared/components/add-project-dialog/add-project-dialog.component';
+import {YoutubePlayerModule} from 'ngx-youtube-player';
+import {SharedModule} from '../shared';
 
 @NgModule({
   imports: [
-    CommonModule,
-    ProjectsMaterialModule,
-    ReactiveFormsModule,
+    SharedModule,
+    YoutubePlayerModule,
     RouterModule.forChild([
       {path: '', component: ProjectListViewComponent}
     ])
@@ -19,10 +17,6 @@ import {AddProjectDialogComponent} from './add-project-dialog/add-project-dialog
   declarations: [
     ProjectListViewComponent,
     ProjectListComponent,
-    AddProjectDialogComponent,
-  ],
-  entryComponents: [
-    AddProjectDialogComponent,
   ],
 })
 export class ProjectListModule {

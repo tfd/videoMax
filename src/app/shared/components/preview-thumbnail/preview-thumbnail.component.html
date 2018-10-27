@@ -1,0 +1,15 @@
+<mat-card class="preview-thumbnail">
+  <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+    {{project.name}}
+  </mat-card-title>
+
+  <img [src]="project.thumbnail" [alt]="project.name" width="150">
+
+  <mat-card-content>{{ project.description }}</mat-card-content>
+
+  <mat-card-actions>
+    <a *ngIf="hasEdit" (click)="edit.emit(project)" alt="Edit" title="Edit"><mat-icon>mode_edit</mat-icon></a>
+    <a *ngIf="hasDelete" (click)="delete.emit(project)" alt="Delete" title="Delete"><mat-icon>delete</mat-icon></a>
+    <a *ngIf="hasAdd" (click)="onAdd(project)" alt="Add" title="Add"><mat-icon>add</mat-icon></a>
+  </mat-card-actions>
+</mat-card>

@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Project} from '../../model/Project';
+import {Project} from '../../shared/models/Project';
 
 @Component({
   selector: 'vmax-project-list',
@@ -17,13 +17,24 @@ export class ProjectListComponent implements OnInit {
   add = new EventEmitter<void>();
 
   @Output()
-  select = new EventEmitter<Project>();
+  edit = new EventEmitter<Project>();
+
+  @Output()
+  delete = new EventEmitter<Project>();
 
   ngOnInit() {
   }
 
   trackByContactId(index, project) {
     return project.id;
+  }
+
+  onEdit(project: Project) {
+    this.edit.emit(project);
+  }
+
+  onDelete(project: Project) {
+    this.edit.emit(project);
   }
 
 }

@@ -1,11 +1,7 @@
-<div class="vmax-project-list">
-  <button mat-raised-button color="primary" (click)="add.emit()">Add</button>
-  <mat-list>
-    <a mat-list-item
-       *ngFor="let project of projects; trackBy:trackByContactId"
-       (click)="select.emit(project)"
-       title="{{ project.name }}">
-      <h3 mat-line>{{project.name}}</h3>
-    </a>
-  </mat-list>
-</div>
+<mat-card class="vmax-project-list">
+  <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div *ngFor="let project of projects">
+      <vmax-preview-thumbnail [project]="project" [hasEdit]="true" (edit)="onEdit($event)" [hasDelete]="true" (delete)="onDelete($event)"></vmax-preview-thumbnail>
+    </div>
+  </div>
+</mat-card>

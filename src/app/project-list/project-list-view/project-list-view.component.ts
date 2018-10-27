@@ -1,10 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ProjectStorageService} from '../../services/project-storage.service';
-import {Observable, zip} from 'rxjs';
-import {Project} from '../../model/Project';
-import {MatDialog} from '@angular/material';
-import {AddProjectDialogComponent} from '../add-project-dialog/add-project-dialog.component';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { Observable, zip } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
+import { ProjectStorageService } from '../../services/project-storage.service';
+import { Project } from 'src/app/shared/models/Project';
+import { AddProjectDialogComponent } from 'src/app/shared/components/add-project-dialog/add-project-dialog.component';
 
 @Component({
   selector: 'vmax-project-list-view',
@@ -19,7 +19,7 @@ export class ProjectListViewComponent implements OnInit {
   public projects$: Observable<Array<Project>>;
 
   ngOnInit() {
-    
+
     this.projects$ = zip(
       this.service.addProject({name: 'project', description: 'something', url: 'http://www.youtube.com '}),
       this.service.addProject({name: 'project1', description: 'something', url: 'http://www.youtube.com '}),
@@ -30,12 +30,16 @@ export class ProjectListViewComponent implements OnInit {
       .pipe(
         mergeMap(() => this.service.getProjects(''))
       );
-    
+
     this.projects$ = this.service.getProjects('');
   }
 
-  select(project: Project) {
-    console.log('select', project);
+  edit(project: Project) {
+    console.log('edit', project);
+  }
+
+  delete(project: Project) {
+    console.log('delete', project);
   }
 
   add() {
@@ -46,7 +50,7 @@ export class ProjectListViewComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddProjectDialogComponent, {
       width: '250px',
-      data: {name: '', description: '', url: ''}
+      data: {id: '', name: '', description: '', url: '', thumbnail: ''}
     });
 
     dialogRef.afterClosed().subscribe(result => {

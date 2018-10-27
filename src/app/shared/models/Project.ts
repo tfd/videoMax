@@ -1,6 +1,7 @@
 export interface Project {
-  id?: number;
+  id?: string;
   name: string;
   description: string;
   url: string;
+  thumbnail?: string;
 }
