@@ -16,7 +16,7 @@ export class EditorListViewComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    debugger;
+    //  debugger;
     if (changes['project'] && this.project) {
       // this.translations = Object.keys(this.project.translations).reduce((arr, key) => arr.push[this.project.translations[key]], []);
       this.translations = Object.values(this.project.translations);

@@ -1,7 +1,8 @@
-<h1>Translations</h1>
-<mat-list dense>
-  <mat-list-item *ngFor="let translation of translations;">
-    T: {{ translation.startTime }} - {{ translation.translation }}
-  </mat-list-item>
-</mat-list>
-<h2>Lost in Translation</h2>
+<div class="editor-list-view">
+  <h1>Translations</h1>
+  <mat-list>
+    <mat-list-item *ngFor="let translation of translations;">
+      {{ translation.startTime | hoursMinutesSeconds }} - {{ translation.translation }}
+    </mat-list-item>
+  </mat-list>
+</div>
