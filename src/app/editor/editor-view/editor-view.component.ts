@@ -30,4 +30,8 @@ export class EditorViewComponent implements OnInit {
     console.log('addTranslation', this.id, translation);
     this.projectService.addTranslation(this.id, translation).subscribe(project => this.changedProject$.next(project));
   }
+  removeTranslation(translation: Translation) {
+    console.log('addTranslation', this.id, translation);
+    this.projectService.removeTranslation(this.id, translation).subscribe(project => this.changedProject$.next(project));
+  }
 }

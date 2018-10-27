@@ -9,7 +9,7 @@
     </mat-card>
   </div>
   <div class="transaction-list" fxFlex="1 1 30em">
-    <vmax-editor-list-view [project]="project"></vmax-editor-list-view>
+    <vmax-editor-list-view [project]="project" (removeTranslation)="removeTranslation($event)"></vmax-editor-list-view>
   </div>
 </div>
 <ng-template #noVideo>

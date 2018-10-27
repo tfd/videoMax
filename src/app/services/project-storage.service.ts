@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Project, Translation} from '../shared/models/Project';
 import {Observable, of} from 'rxjs';
 import {delay} from 'rxjs/operators';
+import {Project, Translation} from '../shared/models/Project';
 
 @Injectable({
   providedIn: 'root'
@@ -101,11 +101,27 @@ export class ProjectStorageService {
 
   addTranslation(id: string, translation: Translation): Observable<Project> {
     let project = this.projects[id];
-    if (!project) { return of({} as Project); }
+    if (!project) {
+      return of({} as Project);
+    }
     project = {...project};
-    if (!project.translations) {project.translations = {}; }
+    if (!project.translations) {
+      project.translations = {};
+    }
     project.translations[translation.startTime] = {...translation};
     return this.updateProject(project);
   }
 
+  removeTranslation(projectId: string, translation: Translation): Observable<Project> {
+    let project = this.projects[projectId];
+    if (!project) {
+      return of({} as Project);
+    }
+    project = {...project};
+    if (project.translations) {
+      let {[translation.startTime]: removed, ...remaining} = project.translations;
+      project.translations = remaining;
+    }
+    return this.updateProject(project);
+  }
 }
