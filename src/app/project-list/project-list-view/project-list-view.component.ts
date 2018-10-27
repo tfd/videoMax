@@ -1,3 +1,4 @@
+import { Router, Route } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { Observable, zip } from 'rxjs';
@@ -13,7 +14,7 @@ import { AddProjectDialogComponent } from 'src/app/shared/components/add-project
 })
 export class ProjectListViewComponent implements OnInit {
 
-  constructor(private service: ProjectStorageService, public dialog: MatDialog) {
+  constructor(private service: ProjectStorageService, public dialog: MatDialog, private router: Router) {
   }
 
   public projects$: Observable<Array<Project>>;
@@ -36,6 +37,7 @@ export class ProjectListViewComponent implements OnInit {
 
   edit(project: Project) {
     console.log('edit', project);
+    this.router.navigate(['/editor', project.id]);
   }
 
   delete(project: Project) {
