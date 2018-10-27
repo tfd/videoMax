@@ -8,6 +8,8 @@ import {AppComponent} from './app.component';
 import {APP_ROUTES} from './app.routes';
 import {ProjectStorageService} from './services/project-storage.service';
 import {SharedModule} from './shared';
+import { ProjectsMaterialModule } from './shared/projects-material.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import {SharedModule} from './shared';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    ProjectsMaterialModule,
+    ReactiveFormsModule,
     SharedModule,
     HttpClientModule,
     RouterModule.forRoot(APP_ROUTES),

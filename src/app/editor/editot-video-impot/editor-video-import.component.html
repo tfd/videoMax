@@ -1,0 +1,17 @@
+<div>
+  <div>
+    <button mat-button type="button" (click)="resetVideo()">Reset</button>
+    <button mat-button type="button" (click)="playVideo()">Play</button>
+  </div>
+  <div [formGroup]="translateForm">
+    <label for="transFieldId">{{currentTime | number: '1.4-4'}} Sec.</label>
+    <input id="transFieldId"
+           matInput
+           placeholder="Translation"
+           formControlName="translateTerm"
+           (keyup)="emitStopVideo($event)">
+    <button mat-button
+            (submit)="submitTranslation()"
+            (click)="submitTranslation()">Submit Trainslation</button>
+  </div>
+</div>

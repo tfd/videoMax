@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectStorageService} from '../../services/project-storage.service';
-import {Observable} from 'rxjs';
+import {Observable, zip} from 'rxjs';
 import {Project} from '../../shared/models/Project';
 import {MatDialog} from '@angular/material';
 import {AddProjectDialogComponent} from '../../shared/components/add-project-dialog/add-project-dialog.component';
 import {filter, mergeMap} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'vmax-project-list-view',
@@ -13,13 +14,13 @@ import {filter, mergeMap} from 'rxjs/operators';
 })
 export class ProjectListViewComponent implements OnInit {
 
-  constructor(private service: ProjectStorageService, public dialog: MatDialog) {
+  constructor(private service: ProjectStorageService, public dialog: MatDialog, private router: Router) {
   }
 
   public projects$: Observable<Array<Project>>;
 
   ngOnInit() {
-    /*
+
     this.projects$ = zip(
       this.service.addProject({name: 'project', description: 'something', url: 'http://www.youtube.com '}),
       this.service.addProject({name: 'project1', description: 'something', url: 'http://www.youtube.com '}),
@@ -30,12 +31,13 @@ export class ProjectListViewComponent implements OnInit {
       .pipe(
         mergeMap(() => this.service.getProjects(''))
       );
-    */
+
     this.projects$ = this.service.getProjects('');
   }
 
   edit(project: Project) {
     console.log('edit', project);
+    this.router.navigate(['/editor', project.id]);
   }
 
   delete(project: Project) {
