@@ -1,5 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {merge, Subject, Subscription} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
 
 @Component({
@@ -7,15 +9,16 @@ import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
   templateUrl: './editor-video-import.component.html',
   styleUrls: ['./editor-video-import.component.css']
 })
-export class EditorVideoImportComponent implements OnInit {
+export class EditorVideoImportComponent implements OnInit, OnDestroy {
 
 
   private videoStoped = false;
-  private videoSub: any;
 
   currentTime: number;
-  translationText: string;
   translateForm: FormGroup;
+
+  private subscription: Subscription;
+  private onDestroySubject$ = new Subject();
 
   constructor(private editEventBus: EditEventBusService,
               private fb: FormBuilder) {
@@ -26,12 +29,27 @@ export class EditorVideoImportComponent implements OnInit {
       translateTerm: ['', [Validators.required], []], // first sync Valid, then async Valid (here empty)
     });
 
-    this.editEventBus.observe(EditEventTypes.VideoStopped.toString())
-      .subscribe((data) => {
-        this.videoStoped = true;
-        this.currentTime = data;
-      });
+    this.subscription = merge(
+      this.editEventBus.observe(EditEventTypes.VideoStopped)
+    ).pipe(
+      takeUntil(this.onDestroySubject$)
+    ).subscribe((data) => {
+          switch (data.type) {
+            case EditEventTypes.VideoStopped:
+              this.videoStoped = true;
+              this.currentTime = data.data;
+              break;
+          }
+        }
+      );
+
   }
+
+
+  ngOnDestroy(): void {
+    this.onDestroySubject$.next();
+  }
+
 
   public submitTranslation() {
     // TODO transmit value
