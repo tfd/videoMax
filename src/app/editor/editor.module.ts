@@ -7,7 +7,7 @@ import {EditEventBusService} from './edit-event-bus.service';
 import {EditorListViewComponent} from './editor-list-view/editor-list-view.component';
 import {EditorVideoViewComponent} from './editor-video-view/editor-video-view.component';
 import {EditorViewComponent} from './editor-view/editor-view.component';
-import {EditorVideoImportComponent} from './editot-video-impot/editor-video-import.component';
+import {EditorVideoImportComponent} from './editor-video-input/editor-video-import.component';
 import {ProjectsMaterialModule} from '../shared/projects-material.module';
 import {SharedModule} from '../shared';
 

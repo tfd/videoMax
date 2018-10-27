@@ -6,7 +6,7 @@ import {Project, Translation} from '../../shared/models/Project';
 import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
 
 @Component({
-  selector: 'vmax-editot-video-impot',
+  selector: 'vmax-editor-video-input',
   templateUrl: './editor-video-import.component.html',
   styleUrls: ['./editor-video-import.component.css']
 })
