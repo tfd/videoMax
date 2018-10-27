@@ -2,8 +2,8 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {merge, Subject, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
-import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
 import {Project, Translation} from '../../shared/models/Project';
+import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
 
 @Component({
   selector: 'vmax-editot-video-impot',
@@ -13,7 +13,7 @@ import {Project, Translation} from '../../shared/models/Project';
 export class EditorVideoImportComponent implements OnInit, OnDestroy {
 
   @Input() project: Project;
-  @Output() addTranslation = new  EventEmitter<Translation>();
+  @Output() addTranslation = new EventEmitter<Translation>();
 
   private videoStoped = false;
 
@@ -33,18 +33,23 @@ export class EditorVideoImportComponent implements OnInit, OnDestroy {
     });
 
     this.subscription = merge(
-      this.editEventBus.observe(EditEventTypes.VideoStopped)
+      this.editEventBus.observe(EditEventTypes.VideoStopped),
+      this.editEventBus.observe(EditEventTypes.VideoPalying),
     ).pipe(
       takeUntil(this.onDestroySubject$)
     ).subscribe((data) => {
-          switch (data.type) {
-            case EditEventTypes.VideoStopped:
-              this.videoStoped = true;
-              this.currentTime = data.data;
-              break;
-          }
+        switch (data.type) {
+          case EditEventTypes.VideoStopped:
+            this.videoStoped = true;
+            this.currentTime = data.data;
+            break;
+          case EditEventTypes.VideoPalying:
+            this.videoStoped = false;
+            this.currentTime = data.data;
+            break;
         }
-      );
+      }
+    );
 
   }
 
@@ -65,11 +70,16 @@ export class EditorVideoImportComponent implements OnInit, OnDestroy {
   }
 
   public resetVideo() {
-    this.editEventBus.emit(EditEventTypes.ResetVideo.toString(), null);
+    this.editEventBus.emit(EditEventTypes.ResetVideo, null);
   }
 
   public playVideo() {
-    this.editEventBus.emit(EditEventTypes.PlayVideo.toString(), null);
+    if (this.videoStoped) {
+      this.editEventBus.emit(EditEventTypes.PlayVideo, null);
+    } else {
+      this.editEventBus.emit(EditEventTypes.StopVideo, null);
+    }
+
   }
 
   public emitStopVideo(keyEvent) {

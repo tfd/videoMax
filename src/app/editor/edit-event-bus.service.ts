@@ -13,15 +13,15 @@ export class EditEventBusService {
   }
 
   emit(eventType: string, data: any) {
-    console.log(' emit(eventType: string, data: any) {', eventType, data);
+    // console.log(' emit(eventType: string, data: any) {', eventType, data);
     this.messages$.next({type: eventType, data: data});
   }
 
   observe(eventType: string) {
-    console.log(' observe(eventType: string) { 00', eventType);
+    // console.log(' observe(eventType: string) { 00', eventType);
     return this.messages$.pipe(
       tap( (data) => {
-        console.log(' observe(eventType: string) { tap ', eventType, data);
+        // console.log(' observe(eventType: string) { tap ', eventType, data);
       }),
       filter((result) => result.type === eventType),
       // map((result) => {result.type , result.data}),
@@ -40,4 +40,5 @@ export enum EditEventTypes {
   ResetVideo = 'ResetVideo',
   VideoStopped = 'VideoStopped',
   VideoPalying = 'VideoPlaying',
+  JumpToScene = 'JumpToScene',
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subject, merge, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
@@ -9,7 +9,7 @@ import {Project} from '../../shared/models/Project';
   templateUrl: './editor-video-view.component.html',
   styleUrls: ['./editor-video-view.component.css']
 })
-export class EditorVideoViewComponent implements OnInit, OnDestroy {
+export class EditorVideoViewComponent implements OnInit, OnDestroy,  AfterViewChecked {
 
   @Input() project: Project;
   youtubeVideoId: string;
@@ -27,6 +27,7 @@ export class EditorVideoViewComponent implements OnInit, OnDestroy {
       this.editEventBus.observe(EditEventTypes.StopVideo),
       this.editEventBus.observe(EditEventTypes.PlayVideo),
       this.editEventBus.observe(EditEventTypes.ResetVideo),
+      this.editEventBus.observe(EditEventTypes.JumpToScene),
     ).pipe(
       takeUntil(this.onDestroySubject$),
     ).subscribe((data) => {
@@ -40,10 +41,15 @@ export class EditorVideoViewComponent implements OnInit, OnDestroy {
         case EditEventTypes.ResetVideo:
           this.resetVideo();
           break;
+        case EditEventTypes.JumpToScene:
+          this.seekToVideo(data.data);
+          break;
       }
     });
   }
 
+  ngAfterViewChecked() {
+  }
 
   ngOnDestroy(): void {
     this.onDestroySubject$.next();
@@ -64,7 +70,7 @@ export class EditorVideoViewComponent implements OnInit, OnDestroy {
   }
 
   public seekToVideo(seconds: number) {
-    this.player.playVideoAt(seconds);
+    this.player.seekTo(seconds, true);
   }
 
   savePlayer(player) {
@@ -76,11 +82,11 @@ export class EditorVideoViewComponent implements OnInit, OnDestroy {
     switch (event.data) {
       case 1: // playing
         this.playVideo();
-        // this.editEventBus.emit(EditEventTypes.VideoPalying.toString(), null);
+        // this.editEventBus.emit(EditEventTypes.VideoPalying, this.player.getCurrentTime());
         break;
       case 2: // stop
         this.pauseVideo();
-        // this.editEventBus.emit(EditEventTypes.VideoStopped.toString(), null);
+        // this.editEventBus.emit(EditEventTypes.VideoStopped, this.player.getCurrentTime());
         break;
       default:
       // empty

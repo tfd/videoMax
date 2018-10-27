@@ -7,6 +7,6 @@
     (change)="onStateChange($event)"
   ></youtube-player>
   <mat-card-footer>
-    Duration: {{player.getDuration()}}
+    Duration: {{player.getDuration() | hoursMinutesSeconds}}
   </mat-card-footer>
 </mat-card>
