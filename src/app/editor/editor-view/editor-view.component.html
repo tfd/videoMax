@@ -1,15 +1,12 @@
-<mat-grid-list cols="2" rowHeight="2:1" *ngIf="project$ | async as project; else noVideo">
+<mat-grid-list cols="2" *ngIf="project$ | async as project; else noVideo">
   <mat-grid-tile style="height: 150px" >
     <vmax-editor-video-view [project]="project"></vmax-editor-video-view>
   </mat-grid-tile>
-  <mat-grid-tile [rowspan]=3 style="background-color: red; height: 100%;">
+  <mat-grid-tile [rowspan]=2 style="background-color: red;">
     <vmax-editor-list-view [project]="project"></vmax-editor-list-view>
   </mat-grid-tile>
   <mat-grid-tile style="height: 150px" >
     <vmax-editot-video-impot [project]="project" (addTranslation)="addTranslation($event)"></vmax-editot-video-impot>
-  </mat-grid-tile>
-  <mat-grid-tile >
-    EMPTY
   </mat-grid-tile>
 </mat-grid-list>
 <ng-template #noVideo>
