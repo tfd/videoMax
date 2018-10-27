@@ -22,7 +22,7 @@ export class EditorListViewComponent implements OnChanges {
     if (changes['project'] && this.project) {
       // this.translations = Object.keys(this.project.translations).reduce((arr, key) => arr.push[this.project.translations[key]], []);
       this.translations = Object.values(this.project.translations || {});
-      console.log('EditorListViewComponent', this.project, this.translations);
+     //  console.log('EditorListViewComponent', this.project, this.translations);
     }
   }
 
@@ -30,7 +30,7 @@ export class EditorListViewComponent implements OnChanges {
     this.editEventBus.emit(EditEventTypes.JumpToScene, seconds);
   }
 
-  removeScene(toremove: Translation) {
-    this.removeTranslation.emit(toremove);
+  removeScene(toRemove: Translation) {
+    this.removeTranslation.emit(toRemove);
   }
 }

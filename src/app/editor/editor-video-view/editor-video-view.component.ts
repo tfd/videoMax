@@ -9,7 +9,7 @@ import {Project} from '../../shared/models/Project';
   templateUrl: './editor-video-view.component.html',
   styleUrls: ['./editor-video-view.component.css']
 })
-export class EditorVideoViewComponent implements OnInit, OnDestroy,  AfterViewChecked {
+export class EditorVideoViewComponent implements OnInit, OnDestroy {
 
   @Input() project: Project;
   youtubeVideoId: string;
@@ -46,9 +46,6 @@ export class EditorVideoViewComponent implements OnInit, OnDestroy,  AfterViewCh
           break;
       }
     });
-  }
-
-  ngAfterViewChecked() {
   }
 
   ngOnDestroy(): void {
