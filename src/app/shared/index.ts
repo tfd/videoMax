@@ -5,11 +5,15 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {YoutubePlayerModule} from 'ngx-youtube-player';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {HourMinuteSecondsPipe} from './pipes/pipes';
-import {PreviewPlayerComponent} from './preview-player/preview-player.component';
+import {PreviewPlayerComponent} from './components/preview-player/preview-player.component';
+import {PreviewThumbnailComponent} from './components/preview-thumbnail/preview-thumbnail.component';
+import {AddProjectDialogComponent} from './components/add-project-dialog/add-project-dialog.component';
 
 @NgModule({
   declarations: [
+    AddProjectDialogComponent,
     PreviewPlayerComponent,
+    PreviewThumbnailComponent,
     HourMinuteSecondsPipe,
   ],
   imports: [
@@ -26,7 +30,11 @@ import {PreviewPlayerComponent} from './preview-player/preview-player.component'
     YoutubePlayerModule,
     FlexLayoutModule,
     PreviewPlayerComponent,
+    PreviewThumbnailComponent,
     HourMinuteSecondsPipe,
+  ],
+  entryComponents: [
+    AddProjectDialogComponent,
   ]
 })
 export class SharedModule {

@@ -1,9 +1,9 @@
 <mat-card class="preview-player">
   <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
     <span fxFlex="80%">{{project.name}}</span>
-    <a *ngIf="hasEdit" (click)="edit.emit(project)"><mat-icon fxFlex="10%">mode_edit</mat-icon></a>
-    <a *ngIf="hasDelete" (click)="delete.emit(project)"><mat-icon fxFlex="10%">delete</mat-icon></a>
-    <a *ngIf="hasAdd" (click)="add.emit(project)"><mat-icon fxFlex="10%">add</mat-icon></a>
+    <a *ngIf="hasEdit" (click)="onEdit(project)"><mat-icon fxFlex="10%">mode_edit</mat-icon></a>
+    <a *ngIf="hasDelete" (click)="onDelete(project)"><mat-icon fxFlex="10%">delete</mat-icon></a>
+    <a *ngIf="hasAdd" (click)="onAdd(project)"><mat-icon fxFlex="10%">add</mat-icon></a>
   </mat-card-title>
 
   <mat-card-content>

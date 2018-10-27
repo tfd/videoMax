@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Project} from '../model/Project';
+import {Project} from '../../models/Project';
 
 @Component({
   selector: 'vmax-preview-player',
@@ -18,6 +18,18 @@ export class PreviewPlayerComponent {
   player: YT.Player;
 
   constructor() {
+  }
+
+  onEdit(project: Project) {
+    this.edit.emit(project);
+  }
+
+  onDelete(project: Project) {
+    this.delete.emit(project);
+  }
+
+  onAdd(project: Project) {
+    this.add.emit(project);
   }
 
   savePlayer(player) {

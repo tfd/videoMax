@@ -6,8 +6,10 @@ import {map} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class YoutubeSearchService {
-  readonly BASE_URL =
-    'https://www.googleapis.com/youtube/v3/search?key=AIzaSyALn0S3A2KfRllUGxvMrOqp1gw9iLKlzpA&part=id';
+  // Alex
+  // readonly BASE_URL = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyALn0S3A2KfRllUGxvMrOqp1gw9iLKlzpA&part=id';
+  // Ronald
+  readonly BASE_URL = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyCqi0adiLPYvvQ5fSncbXXUjI1TNxYrKgQ&part=id,snippet&type=video&videoEmbeddable=true';
 
   constructor(private http: HttpClient) {
   }
@@ -39,5 +41,14 @@ export interface SearchResultItem {
   id: {
     kind: string;
     videoId: string;
+  };
+  snippet?: {
+    title: string,
+    description: string,
+    thumbnails?: {
+      default: {
+        url: string;
+      }
+    }
   };
 }

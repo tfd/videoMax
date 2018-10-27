@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ProjectStorageService} from '../../services/project-storage.service';
 import {Observable} from 'rxjs';
-import {Project} from '../../shared/model/Project';
+import {Project} from '../../shared/models/Project';
 import {MatDialog} from '@angular/material';
-import {AddProjectDialogComponent} from '../add-project-dialog/add-project-dialog.component';
+import {AddProjectDialogComponent} from '../../shared/components/add-project-dialog/add-project-dialog.component';
 
 @Component({
   selector: 'vmax-project-list-view',
@@ -49,7 +49,7 @@ export class ProjectListViewComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddProjectDialogComponent, {
       width: '250px',
-      data: {name: '', description: '', url: ''}
+      data: {id: '', name: '', description: '', url: '', thumbnail: ''}
     });
 
     dialogRef.afterClosed().subscribe(result => {

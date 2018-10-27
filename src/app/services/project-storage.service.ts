@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Project} from '../shared/model/Project';
+import {Project} from '../shared/models/Project';
 import {Observable, of} from 'rxjs';
 import {delay} from 'rxjs/operators';
 

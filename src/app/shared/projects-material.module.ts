@@ -31,6 +31,6 @@ import {
     MatTabsModule,
     MatToolbarModule,
     MatGridListModule,
-  ]
+  ],
 })
 export class ProjectsMaterialModule {}

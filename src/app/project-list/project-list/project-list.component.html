@@ -1,8 +1,7 @@
 <mat-card class="vmax-project-list">
-  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div class="container" fxLayout="row wrap" fxLayout.xs="column" fxLayoutGap="0.5%" fxLayoutAlign="center">
     <div *ngFor="let project of projects">
-      <vmax-preview-player [project]="project" [hasEdit]="true" (edit)="onEdit($event)" [hasDelete]="true" (delete)="onDelete($event)"></vmax-preview-player>
+      <vmax-preview-thumbnail [project]="project" [hasEdit]="true" (edit)="onEdit($event)" [hasDelete]="true" (delete)="onDelete($event)"></vmax-preview-thumbnail>
     </div>
   </div>
 </mat-card>
-

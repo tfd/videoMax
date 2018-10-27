@@ -1,0 +1,11 @@
+.preview-thumbnail img {
+  width: 150px;
+}
+
+.preview-thumbnail mat-card-content {
+  max-width: 250px;
+}
+
+.preview-thumbnail mat-card-title {
+  max-width: 250px;
+}

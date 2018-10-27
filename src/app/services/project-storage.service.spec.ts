@@ -2,7 +2,7 @@ import {TestBed} from '@angular/core/testing';
 
 import {ProjectStorageService} from './project-storage.service';
 import {zip} from 'rxjs';
-import {Project} from '../shared/model/Project';
+import {Project} from '../shared/models/Project';
 
 describe('ProjectStorageService', () => {
   beforeEach(() => {

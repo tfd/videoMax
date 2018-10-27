@@ -17,6 +17,9 @@
       <span *ngIf="form?.controls['url']?.errors?.pattern">The url is not valid</span>
     </mat-error>
   </mat-form-field>
+  <mat-form-field>
+    <input matInput id="thumbnail" name="thumbnail" placeholder="thumbnail" formControlName="thumbnail">
+  </mat-form-field>
 </div>
 <div mat-dialog-actions [formGroup]="form">
   <button mat-button mat-dialog-close>Cancel</button>

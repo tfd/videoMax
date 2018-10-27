@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {ProjectListViewComponent} from './project-list-view/project-list-view.component';
 import {ProjectListComponent} from './project-list/project-list.component';
 import {RouterModule} from '@angular/router';
-import {AddProjectDialogComponent} from './add-project-dialog/add-project-dialog.component';
+import {AddProjectDialogComponent} from '../shared/components/add-project-dialog/add-project-dialog.component';
 import {YoutubePlayerModule} from 'ngx-youtube-player';
 import {SharedModule} from '../shared';
 
@@ -17,10 +17,6 @@ import {SharedModule} from '../shared';
   declarations: [
     ProjectListViewComponent,
     ProjectListComponent,
-    AddProjectDialogComponent,
-  ],
-  entryComponents: [
-    AddProjectDialogComponent,
   ],
 })
 export class ProjectListModule {
