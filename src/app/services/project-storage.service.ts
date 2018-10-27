@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Project} from '../shared/models/Project';
+import {Project, Translation} from '../shared/models/Project';
 import {Observable, of} from 'rxjs';
 import {delay} from 'rxjs/operators';
 
@@ -97,6 +97,15 @@ export class ProjectStorageService {
 
   private random(max: number) {
     return Math.floor(Math.random() * (max + 1));
+  }
+
+  addTranslation(id: string, translation: Translation): Observable<Project> {
+    let project = this.projects[id];
+    if (!project) { return of({} as Project); }
+    project = {...project};
+    if (!project.translations) {project.translations = {}; }
+    project.translations[translation.startTime] = {...translation};
+    return this.updateProject(project);
   }
 
 }

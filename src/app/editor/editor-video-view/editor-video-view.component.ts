@@ -1,7 +1,8 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {Observable, Subject, merge, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
+import {Project} from '../../shared/models/Project';
 
 @Component({
   selector: 'vmax-editor-video-view',
@@ -10,7 +11,8 @@ import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
 })
 export class EditorVideoViewComponent implements OnInit, OnDestroy {
 
-  youtubeVideoId = 'oVJkdhqByUs';
+  @Input() project: Project;
+  youtubeVideoId: string;
   player: YT.Player;
 
   private resetEvent: Subscription;
@@ -20,6 +22,7 @@ export class EditorVideoViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.youtubeVideoId = this.project.id.split(':')[1];
     this.resetEvent = merge(
       this.editEventBus.observe(EditEventTypes.StopVideo),
       this.editEventBus.observe(EditEventTypes.PlayVideo),

@@ -1,3 +1,7 @@
-<p>
-  list-view works!
-</p>
+<h1>Translations</h1>
+<mat-list dense>
+  <mat-list-item *ngFor="let translation of translations;">
+    T: {{ translation.startTime }} - {{ translation.translation }}
+  </mat-list-item>
+</mat-list>
+<h2>Lost in Translation</h2>

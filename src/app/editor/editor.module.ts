@@ -8,15 +8,14 @@ import {EditorListViewComponent} from './editor-list-view/editor-list-view.compo
 import {EditorVideoViewComponent} from './editor-video-view/editor-video-view.component';
 import {EditorViewComponent} from './editor-view/editor-view.component';
 import {EditorVideoImportComponent} from './editot-video-impot/editor-video-import.component';
-import { ProjectsMaterialModule } from '../shared/projects-material.module';
+import {ProjectsMaterialModule} from '../shared/projects-material.module';
+import {SharedModule} from '../shared';
 
 @NgModule({
   imports: [
     YoutubePlayerModule,
-    CommonModule,
+    SharedModule,
     FormsModule,
-    ReactiveFormsModule,
-    ProjectsMaterialModule,
     RouterModule.forChild([
       {path: '', component: EditorViewComponent}
     ])

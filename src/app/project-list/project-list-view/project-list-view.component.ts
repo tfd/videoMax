@@ -21,6 +21,7 @@ export class ProjectListViewComponent implements OnInit {
 
   ngOnInit() {
 
+    /*
     this.projects$ = zip(
       this.service.addProject({name: 'project', description: 'something', url: 'http://www.youtube.com '}),
       this.service.addProject({name: 'project1', description: 'something', url: 'http://www.youtube.com '}),
@@ -31,6 +32,7 @@ export class ProjectListViewComponent implements OnInit {
       .pipe(
         mergeMap(() => this.service.getProjects(''))
       );
+      */
 
     this.projects$ = this.service.getProjects('');
   }

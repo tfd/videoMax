@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {merge, Subject, Subscription} from 'rxjs';
 import {takeUntil} from 'rxjs/operators';
 import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
+import {Project, Translation} from '../../shared/models/Project';
 
 @Component({
   selector: 'vmax-editot-video-impot',
@@ -11,6 +12,8 @@ import {EditEventBusService, EditEventTypes} from '../edit-event-bus.service';
 })
 export class EditorVideoImportComponent implements OnInit, OnDestroy {
 
+  @Input() project: Project;
+  @Output() addTranslation = new  EventEmitter<Translation>();
 
   private videoStoped = false;
 
@@ -45,14 +48,18 @@ export class EditorVideoImportComponent implements OnInit, OnDestroy {
 
   }
 
-
   ngOnDestroy(): void {
     this.onDestroySubject$.next();
   }
 
-
   public submitTranslation() {
-    // TODO transmit value
+    // TODO refactor to emitting events, idiot!!!!
+    const startTime = this.currentTime;
+    const translation = this.translateForm.get('translateTerm').value;
+    this.addTranslation.emit({
+      startTime: startTime,
+      translation: translation
+    });
     console.log(' will submit ', this.translateForm.get('translateTerm').value);
     this.translateForm.get('translateTerm').setValue('');
   }
